@@ -1,0 +1,15 @@
+{
+  "name": "userlist-api",
+  "version": "0.0.1",
+  "description": "Just get and save the ip address of the requestor.",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.5.1",
+    "jade": "*",
+    "mongodb": "*",
+    "mongoskin": "*"
+  }
+}
