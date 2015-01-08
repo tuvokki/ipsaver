@@ -39,7 +39,8 @@ function populateTable() {
      *   _id: "53ea0a13b78481e438dd89b9",
      *   ip: "84.233.191.62",
      *   msg: "Test from Chrome REST client",
-     *   host: "planon-laptop"
+     *   host: "planon-laptop",
+     *   date: 1420747580309
      * },
      */
     // For each item in our JSON, add a table row and cells to the content string
@@ -48,6 +49,7 @@ function populateTable() {
       tableContent += '<td>' + this.ip + '</td>';
       tableContent += '<td>' + this.msg + '</td>';
       tableContent += '<td>' + this.host + '</td>';
+console.log(this.date);
       tableContent += '<td>' + moment(this.date).format('DD/MM/YYYY H:mm:ss') + '</td>';
       tableContent += '</tr>';
     });
