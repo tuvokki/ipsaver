@@ -51,6 +51,8 @@ function populateTable() {
       tableContent += '<td>' + this.host + '</td>';
       if (this.date !== undefined) {
         tableContent += '<td>' + moment(this.date).format('DD/MM/YYYY H:mm:ss') + '</td>';
+      } else {
+        tableContent += '<td></td>';
       }
       tableContent += '</tr>';
     });
