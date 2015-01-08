@@ -28,6 +28,7 @@ exports.ipsave = function(db) {
     if (host != null) {
         savedip.host = host;
     }
+    savedip.date = Date.now();
     db.collection('iphits').insert(savedip, function(err, result){
       res.setHeader('Content-Type', 'application/json');
       res.send(
