@@ -77,6 +77,7 @@ function saveFromFrontend(event) {
               tableContent += '<td>' + returndata.savedip.ip + '</td>';
               tableContent += '<td>' + returndata.savedip.msg + '</td>';
               tableContent += '<td>' + returndata.savedip.host + '</td>';
+              tableContent += '<td>' + moment(returndata.date).format('DD/MM/YYYY H:mm:ss') + '</td>';
               tableContent += '</tr>';
               $('#ipList table tbody').prepend(tableContent);
           },
