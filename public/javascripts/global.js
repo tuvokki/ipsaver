@@ -48,6 +48,7 @@ function populateTable() {
       tableContent += '<td>' + this.ip + '</td>';
       tableContent += '<td>' + this.msg + '</td>';
       tableContent += '<td>' + this.host + '</td>';
+      tableContent += '<td>' + this.date + '</td>';
       tableContent += '</tr>';
     });
 
