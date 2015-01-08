@@ -48,7 +48,7 @@ function populateTable() {
       tableContent += '<td>' + this.ip + '</td>';
       tableContent += '<td>' + this.msg + '</td>';
       tableContent += '<td>' + this.host + '</td>';
-      tableContent += '<td>' + this.date + '</td>';
+      tableContent += '<td>' + moment(this.date).format('DD/MM/YYYY H:mm:ss') + '</td>';
       tableContent += '</tr>';
     });
 
