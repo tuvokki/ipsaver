@@ -1,0 +1,60 @@
+//http://www.lukeharrison.net/blog/create-a-sass-grid-system/
+
+// Set container width relative to user variables
+$width: ($column-width * $columns) + ($gutter * ($columns - 1));
+
+// Set Base Container
+.container
+{
+// Set container width if responsive
+@if $responsive == true
+   {
+  max-width:$width;
+   }
+@else
+   {
+  width:$width;
+   }
+margin:0px auto;
+padding: 0 $padding 0 $padding;
+}
+
+// Define Individual Grid Classes
+@for $i from 1 to $columns
+{
+  // Calculate grid size in pixels
+  $grid: ($column-width * $i) + ($gutter * ($i - 1));
+  
+  // Calculate responsive grid sizes if required
+  @if $responsive == true
+  {
+    // Calculate grid size in pixels
+    $grid: ($grid / $width) * 100%;
+
+    // Get Gutter Percentage for Grids
+    $gutter-percentage: ($gutter / $width) * 100%;
+
+    .grid#{$i}
+      {
+      width: $grid;
+      float: left;
+      margin-left:$gutter-percentage;
+      }
+  }
+  @else
+  {
+    $grid: $grid;
+    .grid#{$i}
+      {
+      width: $grid;
+      float: left;
+      margin-left:$gutter;
+      }
+  }
+}
+
+.clear
+{
+margin-left: 0px;
+clear: left;
+}
