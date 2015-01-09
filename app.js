@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes.index);
+app.get('/', routes.index);
 app.get('/iplist', routes.iplist(db, 10));
 app.get('/iplistp', routes.iplistp(db));
 app.post('/deleteallips', routes.deleteallips(db));
