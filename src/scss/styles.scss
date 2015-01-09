@@ -3,6 +3,17 @@
 @import 'includes/fonts';
 @import 'includes/colors';
 
+// Set Grid (1170gs default)
+$column-width: 80px;
+$gutter: 10px;
+$columns: 12;
+$padding: $gutter / 2;
+
+// Should it be responsive?
+$responsive: true;
+
+@import 'includes/grid';
+
 $text-color: $color-primary-1;
 $background-color: $color-primary-0;
 
@@ -18,6 +29,7 @@ body {
   font-size: $font-size;
   -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
 }
-.list {
+
+.container {
   color: #000;
 }
