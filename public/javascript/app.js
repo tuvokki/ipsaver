@@ -14,12 +14,40 @@ app.config([
   }
 ]);
 
+app.directive('sharedFooter', function() {
+  return {
+    template: '<a href="/iplist">raw list</a>'
+  };
+});
+
+app.directive('sharedHeader', function() {
+  return {
+    template: '<h1>{{whatsMyName}}</h1>'
+  };
+});
+
+app.directive('myDomDirective', function() {
+  return {
+    link: function($scope, element, attrs) {
+      element.bind('click', function() {
+        element.html('You clicked me!');
+      });
+      element.bind('mouseenter', function() {
+        element.css('background-color', 'yellow');
+      });
+      element.bind('mouseleave', function() {
+        element.css('background-color', 'white');
+      });
+    }
+  };
+});
+
 
 /**
 IndexController. Responsible for the index view.
  */
 app.controller("IndexController", function($scope) {
-  $scope.whatsMyName = "Welcome my son";
+  $scope.whatsMyName = "The list";
 });
 
 
