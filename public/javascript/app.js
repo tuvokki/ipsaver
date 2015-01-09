@@ -28,7 +28,7 @@ app.directive('sharedHeader', function() {
 
 app.directive("ipList", function() {
   return {
-    template: '<div ng-repeat="iprecord in iplist" class="list"> <span>{{ iprecord.ip }}</span> <span>{{ iprecord.msg }}</span> <span>{{ iprecord.host }}</span> <span>{{ iprecord.date }}</span> </div>'
+    template: '<div ng-repeat="iprecord in iplist"> <div class="clear grid2">{{ iprecord.ip }}</div> <div class="grid5">{{ iprecord.msg }}</div> <div class="grid3">{{ iprecord.host }}</div> <div class="grid2">{{ iprecord.date }}</div> </div>'
   };
 });
 
