@@ -1,0 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import 'includes/reset';
+@import 'includes/fonts';
+@import 'includes/colors';
+
+// Set Grid (1170gs default)
+$column-width: 80px;
+$gutter: 10px;
+$columns: 12;
+$padding: $gutter / 2;
+
+// Should it be responsive?
+$responsive: true;
+
+@import 'includes/grid';
+
+$text-color: $color-primary-1;
+$background-color: $color-primary-0;
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow-x: hidden;
+  background-color : $background-color;
+  color: $text-color;
+  font-family: $secundary-font;
+  font-size: $font-size;
+  -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+}
+
+.container {
+  color: #000;
+}
