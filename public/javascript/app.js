@@ -26,6 +26,12 @@ app.directive('sharedHeader', function() {
   };
 });
 
+app.directive("ipList", function() {
+  return {
+    template: '<div ng-repeat="iprecord in iplist" class="list"> <span>{{ iprecord.ip }}</span> <span>{{ iprecord.msg }}</span> <span>{{ iprecord.host }}</span> <span>{{ iprecord.date }}</span> </div>'
+  };
+});
+
 app.directive('myDomDirective', function() {
   return {
     link: function($scope, element, attrs) {
@@ -42,12 +48,41 @@ app.directive('myDomDirective', function() {
   };
 });
 
+app.factory('IpData', function($http, $q) {
+  //return a reference to the the IpData function
+  return{
+    getIpList: function() {
+      var ipList;
+      ipList = $http.get('/iplist');
+
+      // When our $http promise resolves
+      return ipList.then(function(response) {
+          if (typeof response.data === 'object') {
+            var ipList = response.data;
+            return ipList;
+          } else {
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function(response) {
+          // something went wrong
+          return $q.reject(response.data);
+      });
+    }
+  };
+});
+
+
 
 /**
 IndexController. Responsible for the index view.
  */
-app.controller("IndexController", function($scope) {
+app.controller("IndexController", function($scope, IpData) {
   $scope.whatsMyName = "The list";
+  return IpData.getIpList().then(function(data) {
+    console.log("data", data);
+    return $scope.iplist = data;
+  });
 });
 
 

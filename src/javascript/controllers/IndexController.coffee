@@ -1,6 +1,10 @@
 ###*
 IndexController. Responsible for the index view.
 ###
-app.controller "IndexController", ($scope) ->
+app.controller "IndexController", ($scope, IpData) ->
   $scope.whatsMyName = "The list"
-  return
+
+  IpData.getIpList()
+    .then (data) ->
+      console.log "data", data
+      $scope.iplist = data
