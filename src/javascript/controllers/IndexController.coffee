@@ -8,3 +8,6 @@ app.controller "IndexController", ($scope, IpData) ->
     .then (data) ->
       console.log "data", data
       $scope.iplist = data
+
+  $scope.submitIp = ->
+    console.log "submitting data ... ", $scope.message, $scope.myip
