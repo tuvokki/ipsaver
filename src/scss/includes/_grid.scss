@@ -1,60 +1,62 @@
-//http://www.lukeharrison.net/blog/create-a-sass-grid-system/
+//http://cognition.happycog.com/article/a-simple-grid-mixin-explained
+//http://codepen.io/alliwagner/pen/vsHgm
 
-// Set container width relative to user variables
-$width: ($column-width * $columns) + ($gutter * ($columns - 1));
+//variables
+$num-of-modules: 12;
+$module-width: 78px;
+$gutter: 14px;
+$layout-width: 1134px;
 
-// Set Base Container
-.container
-{
-// Set container width if responsive
-@if $responsive == true
-   {
-  max-width:$width;
-   }
-@else
-   {
-  width:$width;
-   }
-margin:0px auto;
-padding: 0 $padding 0 $padding;
+// create a flexible gutter
+$flex-gutter: percentage($gutter/$layout-width);
+
+//mixin to create precentage-based width
+@mixin grid($col-num, $gutter-num) {
+  width: percentage((($module-width * $col-num)+($gutter * $gutter-num))/$layout-width);
 }
 
-// Define Individual Grid Classes
-@for $i from 1 to $columns
-{
-  // Calculate grid size in pixels
-  $grid: ($column-width * $i) + ($gutter * ($i - 1));
-  
-  // Calculate responsive grid sizes if required
-  @if $responsive == true
-  {
-    // Calculate grid size in pixels
-    $grid: ($grid / $width) * 100%;
-
-    // Get Gutter Percentage for Grids
-    $gutter-percentage: ($gutter / $width) * 100%;
-
-    .grid#{$i}
-      {
-      width: $grid;
-      float: left;
-      margin-left:$gutter-percentage;
-      }
-  }
-  @else
-  {
-    $grid: $grid;
-    .grid#{$i}
-      {
-      width: $grid;
-      float: left;
-      margin-left:$gutter;
-      }
+.wrap { // clear the floated elements
+  max-width: $layout-width;
+  margin: 0 auto;
+  &:after {
+      content: "."; 
+      display: block; 
+      height: 0; 
+      clear: both; 
+      visibility: hidden; 
+      font-size: 0;
   }
 }
 
-.clear
-{
-margin-left: 0px;
-clear: left;
+.col1of2 {
+  @include grid(6,5);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col1of3 {
+  @include grid(4,3);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col2of3 {
+  @include grid(8,7);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col1of4 {
+  @include grid(3,2);
+  float: left;
+  margin-right: $flex-gutter;
+  &:last-child {
+    margin-right: 0;
+  }
 }
