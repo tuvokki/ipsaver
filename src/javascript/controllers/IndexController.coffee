@@ -10,4 +10,8 @@ app.controller "IndexController", ($scope, IpData) ->
       $scope.iplist = data
 
   $scope.submitIp = ->
-    console.log "submitting data ... ", $scope.message, $scope.myip
+    newrecord = date: Date.now(), msg: $scope.message, host: 'frontend', ip: $scope.myip
+    IpData.saveIp(newrecord)
+      .then (response) ->
+        console.log response
+        $scope.iplist.unshift newrecord
