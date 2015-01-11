@@ -74,6 +74,15 @@ app.factory('IpData', function($http, $q) {
           // something went wrong
           return $q.reject(response.data);
       });
+    },
+    saveIp: function(newip) {
+      return $http.post('/ipsave', newip).
+        then(function(response) {
+          console.log("response", response);
+        }, function(response) {
+          // something went wrong
+          return $q.reject(response.data);
+        });
     }
   };
 });
@@ -90,7 +99,17 @@ app.controller("IndexController", function($scope, IpData) {
     return $scope.iplist = data;
   });
   return $scope.submitIp = function() {
-    return console.log("submitting data ... ", $scope.message, $scope.myip);
+    var newrecord;
+    newrecord = {
+      date: Date.now(),
+      msg: $scope.message,
+      host: 'frontend',
+      ip: $scope.myip
+    };
+    return IpData.saveIp(newrecord).then(function(response) {
+      console.log(response);
+      return $scope.iplist.unshift(newrecord);
+    });
   };
 });
 
