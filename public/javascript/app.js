@@ -95,7 +95,6 @@ IndexController. Responsible for the index view.
 app.controller("IndexController", function($scope, IpData) {
   $scope.whatsMyName = "The list";
   IpData.getIpList().then(function(data) {
-    console.log("data", data);
     return $scope.iplist = data;
   });
   return $scope.submitIp = function() {
@@ -107,7 +106,6 @@ app.controller("IndexController", function($scope, IpData) {
       ip: $scope.myip
     };
     return IpData.saveIp(newrecord).then(function(response) {
-      console.log(response);
       return $scope.iplist.unshift(newrecord);
     });
   };
