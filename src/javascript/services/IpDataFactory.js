@@ -18,6 +18,15 @@ app.factory('IpData', function($http, $q) {
           // something went wrong
           return $q.reject(response.data);
       });
+    },
+    saveIp: function(newip) {
+      return $http.post('/ipsave', newip).
+        then(function(response) {
+          console.log("response", response);
+        }, function(response) {
+          // something went wrong
+          return $q.reject(response.data);
+        });
     }
   };
 });
