@@ -1,6 +1,4 @@
-###*
-NotThereController. Responsible for the 404 view.
-###
+# NotThereController. Responsible for the 404 view.
 app.controller "NotThereController", ($scope, $location) ->
   $scope.whatsMyName = "Error not found"
   $scope.message = "Sorry, the page you are looking
