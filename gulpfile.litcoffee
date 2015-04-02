@@ -37,8 +37,8 @@ Set some options for debugging
 Create the prerequisites for the actual app
 
 depends on:
-  vendor
-  app
+  |vendor|
+  |app|
 
     gulp.task 'scripts', ['vendor', 'app']
 
