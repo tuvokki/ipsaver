@@ -1,6 +1,6 @@
 Gulpfile
 ========
-# Load all required libraries.
+Load all required libraries.
     fs          = require 'fs'
     del         = require 'del'
     gulp        = require 'gulp'
@@ -24,18 +24,18 @@ Gulpfile
     prefix      = require 'gulp-autoprefixer'
     stylish     = require 'coffeelint-stylish'
 
-# read commandline params into object
+read commandline params into object
     argv = yargs.argv
 
-# Set some options for debugging
+Set some options for debugging
     debug_opts = {}
     debug_opts.verbose = argv.v? || argv.verbose?
 
-# Create the prerequisites for the actual app
-# 
-# depends on:
-#   vendor
-#   app
+Create the prerequisites for the actual app
+
+depends on:
+  vendor
+  app
     gulp.task 'scripts', ['vendor', 'app']
 
     gulp.task 'vendor', ->
@@ -64,7 +64,7 @@ Gulpfile
           bowerPackages.push file
         return
 
-  # push anything in src/javascript/vendor to the array
+push anything in src/javascript/vendor to the array
       p = './src/javascript/vendor'
 
       if fs.existsSync p
@@ -74,14 +74,13 @@ Gulpfile
             console.log "%s (%s)", file, path.extname file
           bowerPackages.push p + "/" + file
           return
-    
-  # console.log bowerPackages 
+
       gulp.src bowerPackages
         .pipe plumber()
         .pipe concat('vendor.js')
         .pipe gulp.dest 'public/javascript'
 
-# app task - concatenates all application code into app.js
+app task - concatenates all application code into app.js
     gulp.task 'app', ->
       gulp.src ['src/javascript/app.coffee',
                 'src/javascript/directives/**/*',
@@ -98,7 +97,7 @@ Gulpfile
         .pipe gulp.dest 'public/javascript'
 
 
-# Create CSS - compiles the sass sources into styles.css
+Create CSS - compiles the sass sources into styles.css
     gulp.task 'css', ->
       gulp.src 'src/scss/styles.scss'
         .pipe plumber()
@@ -107,13 +106,13 @@ Gulpfile
         .pipe cssmin keepSpecialComments: 0
         .pipe gulp.dest 'public/stylesheets'
 
-# Create HTML
-# 
-# depends on:
-#   minify-html
+Create HTML
+
+depends on:
+  minify-html
     gulp.task 'html', ['minify-html']
 
-# minify-html task - minifies html sources
+minify-html task - minifies html sources
     gulp.task 'minify-html', ->
       opts = {empty:true,spare:true}
       gulp.src ['src/**/*.html']
@@ -121,11 +120,11 @@ Gulpfile
         .pipe minifyHTML(opts)
         .pipe gulp.dest 'public'
 
-# Copy static resources using streams.
+Copy static resources using streams.
 #
-# depends on:
-#   fonts
-#   visuals
+depends on:
+  fonts
+  visuals
     gulp.task 'resources', ['fonts', 'visuals']
 
     gulp.task 'fonts', ->
@@ -138,14 +137,14 @@ Gulpfile
         .pipe plumber()
         .pipe gulp.dest 'public/images'
 
-# watch task - watches changes in files and runs tasks on changes
-# 
-# depends on:
-#   css
-#   scripts
-#   lint
-#   clint
-#   html
+watch task - watches changes in files and runs tasks on changes
+
+depends on:
+  css
+  scripts
+  lint
+  clint
+  html
     gulp.task 'watch', ->
       gulp.watch "src/scss/*.scss", ['css']
       gulp.watch "src/**/*.js", ['scripts', 'lint']
@@ -153,29 +152,29 @@ Gulpfile
       gulp.watch "src/**/*.html", ['html']
       #gulp.watch 'src/img/**/*', ['images']
 
-# coffee lint - checks the produced coffee files
+coffee lint - checks the produced coffee files
     gulp.task 'clint', ->
       gulp.src './src/**/*.coffee'
           .pipe coffeelint()
           .pipe coffeelint.reporter()
 
-# lint task - checks the produced javascript
+lint task - checks the produced javascript
     gulp.task 'lint', ->
       gulp.src ['src/javascript/**/*.js']
         .pipe plumber()
         .pipe jshint()
         .pipe jshint.reporter stylish
 
-# Remove generated sources
+Remove generated sources
     gulp.task 'clean', ->
       del.sync ['public/**']
 
-# build task - builds all sources
-#
-# depends on:
-#   clean
+build task - builds all sources
+
+depends on:
+  clean
     gulp.task 'build', ['clean'], ->
       gulp.start 'css', 'scripts', 'html', 'resources'
 
-# Default task call every tasks created so far.
+Default task call every tasks created so far.
     gulp.task 'default', ['scripts', 'css', 'html', 'resources']
