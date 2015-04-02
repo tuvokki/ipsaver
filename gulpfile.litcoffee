@@ -34,11 +34,12 @@ Set some options for debugging
     debug_opts = {}
     debug_opts.verbose = argv.v? || argv.verbose?
 
-Create the prerequisites for the actual app
+##Create the prerequisites for the actual app
 
 depends on:
-  |vendor|
-  |app|
+`vendor`
+`app`
+
 
     gulp.task 'scripts', ['vendor', 'app']
 
@@ -68,7 +69,7 @@ depends on:
           bowerPackages.push file
         return
 
-push anything in src/javascript/vendor to the array
+     //push anything in src/javascript/vendor to the array
 
       p = './src/javascript/vendor'
 
@@ -85,7 +86,8 @@ push anything in src/javascript/vendor to the array
         .pipe concat('vendor.js')
         .pipe gulp.dest 'public/javascript'
 
-app task - concatenates all application code into app.js
+###app task
+concatenates all application code into app.js
 
     gulp.task 'app', ->
       gulp.src ['src/javascript/app.coffee',
@@ -103,7 +105,8 @@ app task - concatenates all application code into app.js
         .pipe gulp.dest 'public/javascript'
 
 
-Create CSS - compiles the sass sources into styles.css
+###Create CSS
+compiles the sass sources into styles.css
 
     gulp.task 'css', ->
       gulp.src 'src/scss/styles.scss'
@@ -113,14 +116,15 @@ Create CSS - compiles the sass sources into styles.css
         .pipe cssmin keepSpecialComments: 0
         .pipe gulp.dest 'public/stylesheets'
 
-Create HTML
+###Create HTML
 
 depends on:
-  minify-html
+  `minify-html`
 
     gulp.task 'html', ['minify-html']
 
-minify-html task - minifies html sources
+###minify-html task
+minifies html sources
 
     gulp.task 'minify-html', ->
       opts = {empty:true,spare:true}
@@ -129,11 +133,11 @@ minify-html task - minifies html sources
         .pipe minifyHTML(opts)
         .pipe gulp.dest 'public'
 
-Copy static resources using streams.
+###Copy static resources using streams.
 
 depends on:
-  fonts
-  visuals
+  `fonts`
+  `visuals`
 
     gulp.task 'resources', ['fonts', 'visuals']
 
@@ -147,14 +151,15 @@ depends on:
         .pipe plumber()
         .pipe gulp.dest 'public/images'
 
-watch task - watches changes in files and runs tasks on changes
+###watch task
+watches changes in files and runs tasks on changes
 
 depends on:
-  css
-  scripts
-  lint
-  clint
-  html
+  `css`
+  `scripts`
+  `lint`
+  `clint`
+  `html`
 
     gulp.task 'watch', ->
       gulp.watch "src/scss/*.scss", ['css']
@@ -163,14 +168,16 @@ depends on:
       gulp.watch "src/**/*.html", ['html']
       #gulp.watch 'src/img/**/*', ['images']
 
-coffee lint - checks the produced coffee files
+###coffee lint
+checks the produced coffee files
 
     gulp.task 'clint', ->
       gulp.src './src/**/*.coffee'
           .pipe coffeelint()
           .pipe coffeelint.reporter()
 
-lint task - checks the produced javascript
+###lint task
+checks the produced javascript
 
     gulp.task 'lint', ->
       gulp.src ['src/javascript/**/*.js']
@@ -178,19 +185,25 @@ lint task - checks the produced javascript
         .pipe jshint()
         .pipe jshint.reporter stylish
 
-Remove generated sources
+###Remove generated sources
 
     gulp.task 'clean', ->
       del.sync ['public/**']
 
-build task - builds all sources
+###build task
+builds all sources
 
 depends on:
-  clean
+  `clean`
 
     gulp.task 'build', ['clean'], ->
       gulp.start 'css', 'scripts', 'html', 'resources'
 
-Default task call every tasks created so far.
+##Default task call all tasks created so far.
+depends on:
+  `scripts`
+  `css`
+  `html`
+  `resources`
 
     gulp.task 'default', ['scripts', 'css', 'html', 'resources']
