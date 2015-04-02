@@ -12,19 +12,22 @@ concat      = require 'gulp-concat'
 coffee      = require 'gulp-coffee'
 jshint      = require 'gulp-jshint'
 rename      = require 'gulp-rename'
+uglify      = require 'gulp-uglify'
 plumber     = require 'gulp-plumber'
 coffeelint  = require 'gulp-coffeelint'
 cssmin      = require 'gulp-minify-css'
 minifyHTML  = require 'gulp-minify-html'
+ngannotate  = require 'gulp-ng-annotate'
+stripDebug  = require 'gulp-strip-debug'
 prefix      = require 'gulp-autoprefixer'
 stylish     = require 'coffeelint-stylish'
 
 # read commandline params into object
-args = yargs.argv
+argv = yargs.argv
 
 # Set some options for debugging
 debug_opts = {}
-debug_opts.verbose = args.v? || args.verbose?
+debug_opts.verbose = argv.v? || argv.verbose?
 
 # Create the prerequisites for the actual app
 # 
@@ -87,7 +90,9 @@ gulp.task 'app', ->
     .pipe plumber()
     .pipe gulpif /[.]coffee$/, coffee({bare: true})
       # .on('error', gutil.log))
-    # .pipe(uglify())
+    .pipe gulpif !argv.dev, stripDebug()
+    .pipe ngannotate()
+    .pipe gulpif !argv.dev, uglify()
     .pipe concat('app.js')
     .pipe gulp.dest 'public/javascript'
 
