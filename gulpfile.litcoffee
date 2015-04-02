@@ -1,6 +1,7 @@
 Gulpfile
 ========
 Load all required libraries.
+
     fs          = require 'fs'
     del         = require 'del'
     gulp        = require 'gulp'
@@ -25,9 +26,11 @@ Load all required libraries.
     stylish     = require 'coffeelint-stylish'
 
 read commandline params into object
+
     argv = yargs.argv
 
 Set some options for debugging
+
     debug_opts = {}
     debug_opts.verbose = argv.v? || argv.verbose?
 
@@ -36,6 +39,7 @@ Create the prerequisites for the actual app
 depends on:
   vendor
   app
+
     gulp.task 'scripts', ['vendor', 'app']
 
     gulp.task 'vendor', ->
@@ -65,6 +69,7 @@ depends on:
         return
 
 push anything in src/javascript/vendor to the array
+
       p = './src/javascript/vendor'
 
       if fs.existsSync p
@@ -81,6 +86,7 @@ push anything in src/javascript/vendor to the array
         .pipe gulp.dest 'public/javascript'
 
 app task - concatenates all application code into app.js
+
     gulp.task 'app', ->
       gulp.src ['src/javascript/app.coffee',
                 'src/javascript/directives/**/*',
@@ -98,6 +104,7 @@ app task - concatenates all application code into app.js
 
 
 Create CSS - compiles the sass sources into styles.css
+
     gulp.task 'css', ->
       gulp.src 'src/scss/styles.scss'
         .pipe plumber()
@@ -110,9 +117,11 @@ Create HTML
 
 depends on:
   minify-html
+
     gulp.task 'html', ['minify-html']
 
 minify-html task - minifies html sources
+
     gulp.task 'minify-html', ->
       opts = {empty:true,spare:true}
       gulp.src ['src/**/*.html']
@@ -121,10 +130,11 @@ minify-html task - minifies html sources
         .pipe gulp.dest 'public'
 
 Copy static resources using streams.
-#
+
 depends on:
   fonts
   visuals
+
     gulp.task 'resources', ['fonts', 'visuals']
 
     gulp.task 'fonts', ->
@@ -145,6 +155,7 @@ depends on:
   lint
   clint
   html
+
     gulp.task 'watch', ->
       gulp.watch "src/scss/*.scss", ['css']
       gulp.watch "src/**/*.js", ['scripts', 'lint']
@@ -153,12 +164,14 @@ depends on:
       #gulp.watch 'src/img/**/*', ['images']
 
 coffee lint - checks the produced coffee files
+
     gulp.task 'clint', ->
       gulp.src './src/**/*.coffee'
           .pipe coffeelint()
           .pipe coffeelint.reporter()
 
 lint task - checks the produced javascript
+
     gulp.task 'lint', ->
       gulp.src ['src/javascript/**/*.js']
         .pipe plumber()
@@ -166,6 +179,7 @@ lint task - checks the produced javascript
         .pipe jshint.reporter stylish
 
 Remove generated sources
+
     gulp.task 'clean', ->
       del.sync ['public/**']
 
@@ -173,8 +187,10 @@ build task - builds all sources
 
 depends on:
   clean
+
     gulp.task 'build', ['clean'], ->
       gulp.start 'css', 'scripts', 'html', 'resources'
 
 Default task call every tasks created so far.
+
     gulp.task 'default', ['scripts', 'css', 'html', 'resources']
