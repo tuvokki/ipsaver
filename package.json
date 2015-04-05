@@ -1,10 +1,27 @@
 {
   "name": "ipsaver",
+  "description": "Save your ip, just because it's possible",
   "version": "0.0.0",
-  "private": true,
+  "homepage": "https://github.com/tuvokki/ipsaver",
+  "author": {
+    "name": "Wouter Roosendaal",
+    "url": "https://github.com/tuvokki"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tuvokki/ipsaver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuvokki/ipsaver/issues"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
+  "license": "MIT",
+  "private": true,
   "dependencies": {
     "body-parser": "~1.8.1",
     "cookie-parser": "~1.3.3",
@@ -45,5 +62,10 @@
     "gulp-uglify": "^1.1.0",
     "underscore": "~1.7.0",
     "yargs": "^3.6.0"
-  }
+  },
+  "keywords": [
+    "save",
+    "ip",
+    "fornoreasonatall"
+  ]
 }

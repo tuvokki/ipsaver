@@ -9,6 +9,7 @@ Load all required libraries.
     yargs       = require 'yargs'
     gulpif      = require 'gulp-if'
     sass        = require 'gulp-sass'
+    verb        = require 'gulp-verb'
     debug       = require 'gulp-debug'
     underscore  = require 'underscore'
     concat      = require 'gulp-concat'
@@ -103,7 +104,6 @@ concatenates all application code into app.js
         .pipe gulpif !argv.dev, uglify()
         .pipe concat('app.js')
         .pipe gulp.dest 'public/javascript'
-
 
 ###Create CSS
 compiles the sass sources into styles.css
@@ -207,3 +207,13 @@ depends on:
   `resources`
 
     gulp.task 'default', ['scripts', 'css', 'html', 'resources']
+
+ ##Last but not least a documentation task
+ Verb makes it dead simple to generate markdown documentation,
+ using simple templates, with zero configuration required.
+ A project without documentation is like a project that doesn't exist.
+ 
+    gulp.task 'docs', ->
+      gulp.src ['.verbrc.md']
+        .pipe verb dest:'README.md'
+        .pipe gulp.dest './'
