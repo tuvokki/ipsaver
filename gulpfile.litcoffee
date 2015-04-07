@@ -70,7 +70,7 @@ depends on:
           bowerPackages.push file
         return
 
-push anything in src/javascript/vendor to the array
+      # push anything in src/javascript/vendor to the array
 
       p = './src/javascript/vendor'
 
