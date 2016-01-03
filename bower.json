@@ -1,11 +1,11 @@
 {
-  "name": "locals",
-  "version": "0.0.0",
-  "homepage": "https://github.com/tuvokki/locals",
+  "name": "ipsaver",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tuvokki/ipsaver",
   "authors": [
     "Wouter <tuvokki@gmail.com>"
   ],
-  "description": "A local thing that does things in a not remote fashion",
+  "description": "A ipsaver thing that does things in a ipsaver fashion",
   "main": "index",
   "moduleType": [
     "es6"
