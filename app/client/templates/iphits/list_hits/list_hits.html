@@ -1,0 +1,23 @@
+<template name="ListHits">
+  <h1>Hits List</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2">Host</th>
+        <th class="col-md-3">Ip</th>
+        <th class="col-md-3">Message</th>
+        <th class="col-md-1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each hits}}
+        <tr>
+          <td>{{host}}</td>
+          <td>{{ip}}</td>
+          <td>{{msg}}</td>
+          <td>{{#linkTo route='editHit'}}<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{/linkTo}} {{# quickRemoveButton collection="Iphits" _id=this._id beforeRemove=beforeRemove class="btn btn-link btn-xs"}}<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>{{/quickRemoveButton}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
