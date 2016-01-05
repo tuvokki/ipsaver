@@ -3,7 +3,7 @@
 > Save your ip, just because it's possible. This time with the Meteor framework
 
 ## Install
-- Make sure you have [Meteor](http://www.meteor.com/) installed:
+- Make sure you have [Meteor](https://www.meteor.com/install) installed, on OSX:
 
 `curl https://install.meteor.com/ | sh`
 
