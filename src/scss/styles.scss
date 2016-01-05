@@ -1,0 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import 'includes/reset';
+@import 'includes/fonts';
+@import 'includes/colors';
+
+@import 'includes/grid';
+
+$text-color: $color-secondary-1-4;
+$background-color: $color-primary-0;
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow-x: hidden;
+  background-color : $background-color;
+  color: $text-color;
+  font-family: $secundary-font;
+  font-size: $font-size;
+  -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+}
+.head {
+  background-color: $color-secondary-2-0;
+  height: 37px;
+  padding: 10px;
+}
+.data {
+  padding-top: 10px;
+  border-color: white;
+  border-width: 1px;
+  border-style: inset;
+  border-top-style: hidden;
+  .record {
+    margin-left: 4px;
+    padding-bottom: 25px;
+  }
+}
+.form {
+  padding-top: 10px;
+  h6 {
+    margin-bottom: 4px;
+  }
+}

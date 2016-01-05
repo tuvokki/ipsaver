@@ -1,0 +1,62 @@
+//http://cognition.happycog.com/article/a-simple-grid-mixin-explained
+//http://codepen.io/alliwagner/pen/vsHgm
+
+//variables
+$num-of-modules: 12;
+$module-width: 78px;
+$gutter: 14px;
+$layout-width: 1134px;
+
+// create a flexible gutter
+$flex-gutter: percentage($gutter/$layout-width);
+
+//mixin to create precentage-based width
+@mixin grid($col-num, $gutter-num) {
+  width: percentage((($module-width * $col-num)+($gutter * $gutter-num))/$layout-width);
+}
+
+.wrap { // clear the floated elements
+  max-width: $layout-width;
+  margin: 0 auto;
+  &:after {
+      content: "."; 
+      display: block; 
+      height: 0; 
+      clear: both; 
+      visibility: hidden; 
+      font-size: 0;
+  }
+}
+
+.col1of2 {
+  @include grid(6,5);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col1of3 {
+  @include grid(4,3);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col2of3 {
+  @include grid(8,7);
+  float: left;
+  &:first-child {
+    margin-right: $flex-gutter;
+  }
+}
+
+.col1of4 {
+  @include grid(3,2);
+  float: left;
+  margin-right: $flex-gutter;
+  &:last-child {
+    margin-right: 0;
+  }
+}

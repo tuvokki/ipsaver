@@ -16,7 +16,7 @@ exports.index = function(req, res){
 exports.ipsave = function(db) {
   return function(req, res) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    var comm = req.body.comment;
+    var comm = req.body.msg;
     var host = req.body.host;
     var savedip = {};
     savedip.ip = ip;
