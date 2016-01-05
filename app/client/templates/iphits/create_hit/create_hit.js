@@ -10,7 +10,7 @@ Template.CreateHit.events({
 Template.CreateHit.helpers({
   ipdoc: function() {
     var headers = Session.get('headers');
-    ip = headers['x-forwarded-for'];
+    ip = headers['x-forwarded-for'].split(',')[0];
     return { ip: ip };
   }
 });
