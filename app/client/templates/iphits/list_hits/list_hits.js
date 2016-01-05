@@ -9,7 +9,10 @@ Template.ListHits.events({
 /*****************************************************************************/
 Template.ListHits.helpers({
   hits: function() {
-    return Iphits.find();
+    return Iphits.find({}, {
+      limit: 10,
+      sort: { date: -1}
+    });
   },
   beforeRemove: function () {
     return function (collection, id) {
