@@ -8,6 +8,9 @@
 - meteor
 - open url
 
+## test
+from mongo console: db.iphits.insert({host:"test",ip:"127.0.0.1",msg:"mongo",date:Date.now()})
+
 ## Author
 
 **Wouter Roosendaal**
