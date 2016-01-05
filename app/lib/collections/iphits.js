@@ -17,6 +17,15 @@ Iphits.attachSchema(new SimpleSchema({
     label: "msg",
     max: 100,
     optional: false
+  },
+  date: {
+    type: Number,
+    label: 'date',
+    optional: true,
+    autoValue:function(){
+      var date = Date.now();
+      return date;
+    }
   }
 }));
 
