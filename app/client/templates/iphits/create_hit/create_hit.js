@@ -11,7 +11,7 @@ Template.CreateHit.helpers({
   ipdoc: function() {
     var headers = Session.get('headers');
     ip = headers['x-forwarded-for'].split(',')[0];
-    return { ip: ip };
+    return { host: 'new frontend', ip: ip };
   }
 });
 

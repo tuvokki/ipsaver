@@ -3,9 +3,9 @@
   {{#autoForm collection="Iphits" id="insertIphitForm" type="insert" doc=ipdoc}}
   <fieldset>
     <legend>Add a ip-Hit</legend>
-    {{> afQuickField name='host' autofocus=''}}
+    {{> afQuickField name='host' readonly='true'}}
     {{> afQuickField name='ip' readonly='true'}}
-    {{> afQuickField name='msg'}}
+    {{> afQuickField name='msg' autofocus=''}}
   </fieldset>
   <button type="submit" class="btn btn-primary">Insert</button>
   {{/autoForm}}
