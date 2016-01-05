@@ -8,6 +8,11 @@ Template.CreateHit.events({
 /* CreateHit: Helpers */
 /*****************************************************************************/
 Template.CreateHit.helpers({
+  ipdoc: function() {
+    var headers = Session.get('headers');
+    ip = headers['x-forwarded-for'];
+    return { ip: ip };
+  }
 });
 
 /*****************************************************************************/

@@ -1,4 +1,13 @@
 <template name="CreateHit">
   <h1>Create a hit</h1>
-  {{> quickForm collection="Iphits" id="insertIphitForm" type="insert" buttonContent="Create"}}
+  {{#autoForm collection="Iphits" id="insertIphitForm" type="insert" doc=ipdoc}}
+  <fieldset>
+    <legend>Add a ip-Hit</legend>
+    {{> afQuickField name='host' autofocus=''}}
+    {{> afQuickField name='ip' readonly='true'}}
+    {{> afQuickField name='msg'}}
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+
 </template>

@@ -10,7 +10,6 @@ Iphits.attachSchema(new SimpleSchema({
   ip: {
     type: String,
     label: "ip",
-    max: 100,
     optional: false
   },
   msg: {
