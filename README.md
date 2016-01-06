@@ -9,6 +9,14 @@
 npm i ipsaver --save-dev
 ```
 
+## Test
+
+Command line curl: `curl --data "msg=curl test&host=whatever" http://ip.wouterroosendaal.nl/ipsave`
+
+Received answer:
+
+    {"status":"saved","savedip":{"ip":"xx.xx.xx.xx","msg":"curl test","host":"whatever","date":1452089487684,"_id":"568d208f08b0027936f19946"}}
+
 ## Author
 
 **Wouter Roosendaal**
