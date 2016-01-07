@@ -26,20 +26,56 @@ Iphits.attachSchema(new SimpleSchema({
       var date = Date.now();
       return date;
     }
+  },
+  owner: {
+    type: String,
+    autoValue: function() {
+      if (Meteor.userId())
+        return Meteor.userId();
+      else
+        return "Anonymous"
+    }
+  },
+  username: {
+    type: String,
+    autoValue: function() {
+      if (Meteor.userId())
+        return Meteor.user().username;
+      else
+        return "none"
+    }
   }
 }));
 
 if (Meteor.isServer) {
   Iphits.allow({
     insert: function (userId, doc) {
+      // Make sure the user is logged in before inserting an ip-hit
+      if (! Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
       return true;
     },
 
     update: function (userId, doc, fieldNames, modifier) {
+      // admin can do everything
+      if (Meteor.user().username == 'admin')
+        return true;
+      // Make sure the logged in user is owner before updating an ip-hit
+      if (userId != doc.owner) {
+        throw new Meteor.Error("not-authorized");
+      }
       return true;
     },
 
     remove: function (userId, doc) {
+      // admin can do everything
+      if (Meteor.user().username == 'admin')
+        return true;
+      // Make sure the logged in user is owner before removing an ip-hit
+      if (userId != doc.owner) {
+        throw new Meteor.Error("not-authorized");
+      }
       return true;
     }
   });

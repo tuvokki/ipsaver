@@ -8,13 +8,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Meteor Iphits Manager</a>
+        <a class="navbar-brand" href="#">IP-Lister</a>
       </div>
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
           <li>{{#linkTo route="home"}}Home{{/linkTo}}</li>
           <li>{{#linkTo route="listHits"}}Hits{{/linkTo}}</li>
+          {{#if currentUser}}
           <li>{{#linkTo route="createHit"}}Create New Hit{{/linkTo}}</li>
+          {{/if}}
+          {{> loginButtons}}
         </ul>
       </div>
     </div>

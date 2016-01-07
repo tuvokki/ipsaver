@@ -3,3 +3,7 @@ Meteor.startup(function() {
     Session.set('headers', data);
   });
 });
+
+Accounts.ui.config({
+  passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+});

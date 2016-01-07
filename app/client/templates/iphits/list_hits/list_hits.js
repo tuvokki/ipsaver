@@ -22,6 +22,11 @@ Template.ListHits.helpers({
       Router.go('listHits');
     }
   };
+ },
+ crudEnabled: function () {
+  if (Meteor.user().username == 'admin')
+    return true;
+  return this.owner == Meteor.userId();
  }
 });
 

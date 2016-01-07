@@ -1,3 +1,8 @@
 <template name="Home">
-  <a href="/iphits/create">Create iphit</a>
+  <h1>Hits List</h1>
+  {{#if currentUser}}
+    {{#linkTo route="createHit"}}Create New Hit{{/linkTo}}
+  {{else}}
+    Register to start registering ip's.
+  {{/if}}
 </template>

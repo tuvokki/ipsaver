@@ -1,4 +1,13 @@
 <template name="EditHit">
   <h1>Edit</h1>
-  {{> quickForm collection="Iphits" doc=this id="editHitForm" type="update" buttonContent="Update"}}
+  {{#autoForm collection="Iphits" doc=this id="editHitForm" type="update"}}
+  <fieldset>
+    <legend>Edit a ip-Hit</legend>
+    {{> afQuickField name='host' readonly='true'}}
+    {{> afQuickField name='ip' readonly='true'}}
+    {{> afQuickField name='msg' autofocus=''}}
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Update</button>
+  {{/autoForm}}
+
 </template>
