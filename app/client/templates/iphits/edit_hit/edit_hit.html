@@ -1,5 +1,6 @@
 <template name="EditHit">
   <h1>Edit</h1>
+  {{> flashMessages}}
   {{#autoForm collection="Iphits" doc=this id="editHitForm" type="update"}}
   <fieldset>
     <legend>Edit a ip-Hit</legend>

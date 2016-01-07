@@ -63,7 +63,7 @@ if (Meteor.isServer) {
         return true;
       // Make sure the logged in user is owner before updating an ip-hit
       if (userId != doc.owner) {
-        throw new Meteor.Error("not-authorized");
+        throw new Meteor.Error("not-authorized", "You are not the owner of this ip-hit.");
       }
       return true;
     },
@@ -74,7 +74,7 @@ if (Meteor.isServer) {
         return true;
       // Make sure the logged in user is owner before removing an ip-hit
       if (userId != doc.owner) {
-        throw new Meteor.Error("not-authorized");
+        throw new Meteor.Error("not-authorized", "You are not the owner of this ip-hit.");
       }
       return true;
     }
