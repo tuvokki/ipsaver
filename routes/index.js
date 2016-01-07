@@ -93,7 +93,7 @@ exports.iplistp = function(db) {
 
 exports.deleteallips = function(db) {
   return function(req, res) {
-    if (req.body.secpass == 'd3l3t3-em-4lL') {
+    if (req.body.secpass == process.env.SEC_PASS) {
       db.collection('iphits').remove(function(err, result) {
         res.send((result === 1) ? { msg: 'deleted' } : { msg:'error: ' + err });
       });
