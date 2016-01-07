@@ -24,9 +24,9 @@ Template.ListHits.helpers({
   };
  },
  crudEnabled: function () {
-  if (Meteor.user().username == 'admin')
+  if (Meteor.user() && Meteor.user().username == 'admin')
     return true;
-  return this.owner == Meteor.userId();
+  return Meteor.user() && this.owner == Meteor.userId();
  }
 });
 
