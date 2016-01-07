@@ -59,7 +59,7 @@ if (Meteor.isServer) {
 
     update: function (userId, doc, fieldNames, modifier) {
       // admin can do everything
-      if (Meteor.user().username == 'admin')
+      if (Meteor.user() && Meteor.user().username == 'admin')
         return true;
       // Make sure the logged in user is owner before updating an ip-hit
       if (userId != doc.owner) {
@@ -70,7 +70,7 @@ if (Meteor.isServer) {
 
     remove: function (userId, doc) {
       // admin can do everything
-      if (Meteor.user().username == 'admin')
+      if (Meteor.user() && Meteor.user().username == 'admin')
         return true;
       // Make sure the logged in user is owner before removing an ip-hit
       if (userId != doc.owner) {

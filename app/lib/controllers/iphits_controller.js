@@ -24,7 +24,7 @@ IphitsController = RouteController.extend({
   // return Posts.findOne({_id: this.params._id});
   
   data: function () {
-    return Iphits.findOne({_id: this.params._id});
+    return Iphits.findOne({_id: this.params._id, owner: Meteor.userId()});
   },
   create: function () {
     this.render('CreateHit', {});
